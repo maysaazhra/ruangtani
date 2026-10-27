@@ -190,7 +190,7 @@ export const LaporanPage = () => {
       {/* PRINT-ONLY OFFICIAL KOP SURAT */}
       <div className="hidden print-only mb-6 border-b-2 border-black pb-4 text-center">
         <h2 className="text-xl font-bold uppercase tracking-tight">KELOMPOK TANI MARSUDI AMONG TANI</h2>
-        <p className="text-xs">Desa Dawuhan, Kec. Padamara, Kab. Purbalingga, Jawa Tengah</p>
+        <p className="text-xs">Jalan Pesarehan Adipati Mrapat No 68, Desa Dawuhan, Kec. Banyumas, Kab. Banyumas, Jawa Tengah 53192</p>
         <p className="text-xs font-semibold mt-1">LAPORAN HASIL PANEN & PENJUALAN - PERIODE: {getMonthName(selectedPeriod.month).toUpperCase()} {selectedPeriod.year}</p>
       </div>
 

@@ -363,27 +363,30 @@ export const INITIAL_SALES = [
 export const DESA_DAWUHAN_INFO = {
   namaKelompok: 'Marsudi Among Tani',
   namaDesa: 'Desa Dawuhan',
-  kecamatan: 'Kecamatan Padamara',
-  kabupaten: 'Kabupaten Purbalingga',
+  kecamatan: 'Kecamatan Banyumas',
+  kabupaten: 'Kabupaten Banyumas',
   provinsi: 'Jawa Tengah',
+  kodePos: '53192',
+  kepalaDesa: 'Bapak Ruswanto',
   tahunBerdiri: '2014',
   jumlahAnggota: '48 Petani Aktif',
   luasLahanBinaan: '42.5 Hektar',
   ketua: 'Pak Slamet Raharjo',
   kontakWA: '6281234567890',
   teleponDisplay: '+62 812-3456-7890',
-  email: 'kontak@marsudiamongtani-dawuhan.id',
-  alamatSekretariat: 'Balai Kelompok Tani, Jl. Sawah Subur No. 12, Dusun Krajan, Desa Dawuhan',
+  email: 'siddawuhanbanyumas@gmail.com',
+  websiteDesa: 'https://dawuhan-bms.desa.id',
+  alamatSekretariat: 'Jalan Pesarehan Adipati Mrapat No 68, Desa Dawuhan, Kecamatan Banyumas, Kabupaten Banyumas, Jawa Tengah 53192',
   
-  profilDesa: `Desa Dawuhan merupakan salah satu lumbung pangan potensial yang terletak di lereng selatan Gunung Slamet, memberikan keunggulan berupa tanah vulkanik yang subur dan ketersediaan air irigasi pegunungan yang melimpah sepanjang tahun. Sebagian besar warga desa menggantungkan mata pencaharian pada sektor agraris dengan tradisi gotong royong yang kental.
+  profilDesa: `Desa Dawuhan berada sekitar 5 km di sebelah barat alun-alun Kota Banyumas, terletak di wilayah Kecamatan Banyumas, Kabupaten Banyumas, Jawa Tengah. Nama Dawuhan berasal dari kata "dawuan" dalam bahasa Sunda yang berarti tempat mengatur aliran air ke sawah dan ladang (irigasi pertanian), yang berkembang menjadi "Dawuhan" seiring bercampurnya budaya luhur Jawa dan Sunda di daerah ini. Selain itu, nama ini lekat dengan dawuh (perintah) pendiri Banyumas, Adipati Mrapat (Raden Djoko Kahiman), yang menjadikan desa ini sebagai kompleks pemakaman Bupati Banyumas pertama (Pesarehan Adipati Mrapat).
 
-Komoditas utama yang dihasilkan meliputi padi sawah varietas unggul seperti Ciherang dan Mentik Wangi, jagung hibrida berbobot tinggi, serta kedelai Anjasmoro yang menjadi bahan baku utama tempe dan tahu lokal. Melalui pengelolaan terintegrasi dan modernisasi pertanian, Desa Dawuhan bertekad mewujudkan kedaulatan pangan desa yang mandiri dan berdaya saing.`,
+Dipimpin oleh Kepala Desa Bapak Ruswanto, Desa Dawuhan merupakan kawasan agraris subur sekaligus desa wisata budaya dan religi. Komoditas pangan utama yang dihasilkan meliputi padi sawah varietas unggul (Ciherang dan Mentik Wangi), jagung hibrida, serta kedelai pilihan yang menjadi pasokan pangan andalan warga. Melalui sistem RuangTani, para petani berkomitmen menjaga keteraturan tata kelola panen, stok lumbung pangan, dan transparansi distribusi hasil bumi Desa Dawuhan.`,
 
-  sejarahKelompok: `Kelompok Tani "Marsudi Among Tani" resmi dibentuk pada tanggal 14 Mei 2014 atas inisiatif 18 petani pelopor Desa Dawuhan. Nama "Marsudi Among Tani" diambil dari falsafah luhur Jawa: "Marsudi" yang bermakna berikhtiar sungguh-sungguh dengan penuh ketulusan, dan "Among Tani" yang bermakna memelihara dan memuliakan profesi petani serta bumi pertiwi.
+  sejarahKelompok: `Kelompok Tani "Marsudi Among Tani" dibentuk atas inisiatif para petani pelopor Desa Dawuhan, Kecamatan Banyumas, Kabupaten Banyumas. Nama "Marsudi Among Tani" diambil dari falsafah luhur: "Marsudi" yang bermakna berikhtiar sungguh-sungguh dengan penuh ketulusan, dan "Among Tani" yang bermakna memelihara dan memuliakan profesi petani serta merawat kesuburan bumi pertiwi.
 
-Awalnya kelompok ini berdiri sebagai sarana musyawarah jadwal tanam, pengelolaan saluran irigasi bersama (ulu-ulu), dan gotong royong pembagian pupuk bersubsidi. Seiring perkembangan waktu, kelompok tani ini bertransformasi menjadi wadah modern yang mencakup pencatatan data panen digital, pengelolaan lumbung stok gabah kelompok, stabilisasi harga jual gabah petani, hingga pemasaran produk unggulan langsung kepada konsumen dan koperasi tanpa perantara tengkulak yang merugikan.
+Terinspirasi dari akar sejarah nama Dawuhan sebagai pusat pengaturan air persawahan sejak zaman dahulu, kelompok ini mengawali pergerakan dari musyawarah giliran pengairan (ulu-ulu), jadwal pola tanam padi, dan pembagian pupuk bersubsidi. Seiring perkembangan teknologi, kelompok tani ini berkembang menjadi wadah modern berbasis sains data yang mencakup pencatatan panen digital, pengelolaan lumbung stok gabah, stabilitas harga jual petani, hingga pemasaran produk unggulan langsung kepada konsumen dan koperasi.
 
-Hingga tahun 2026, kelompok tani telah beranggotakan lebih dari 48 petani aktif dengan total hamparan lahan binaan mencapai 42.5 hektar, menjadi percontohan kelompok tani mandiri data di Kabupaten Purbalingga.`,
+Hingga tahun 2026, kelompok tani telah beranggotakan lebih dari 48 petani aktif dengan total hamparan lahan binaan mencapai 42.5 hektar, menjadi percontohan kelompok tani mandiri data di Kabupaten Banyumas.`,
 
   visiMisi: {
     visi: 'Terwujudnya Kelompok Tani Mandiri, Sejahtera, dan Berbasis Sains Data Pertanian yang Berkelanjutan di Desa Dawuhan.',

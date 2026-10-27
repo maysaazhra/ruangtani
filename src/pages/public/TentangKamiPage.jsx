@@ -35,7 +35,7 @@ export const TentangKamiPage = () => {
         </h1>
         
         <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-manrope">
-          Dedikasi petani lokal dalam mengolah tanah berkah lereng Gunung Slamet melalui sistem digital terpadu RuangTani.
+          Dedikasi petani lokal dalam mengolah tanah persawahan Desa Dawuhan, Kecamatan Banyumas melalui sistem digital terpadu RuangTani.
         </p>
 
         {/* Pill Switcher */}
@@ -85,10 +85,10 @@ export const TentangKamiPage = () => {
                   Potensi Agraris Pedesaan
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-serif font-bold text-white">
-                  Desa Dawuhan, Padamara, Purbalingga
+                  Desa Dawuhan, Kec. Banyumas, Kab. Banyumas
                 </h2>
                 <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-manrope">
-                  Kawasan agraris subur di lereng Gunung Slamet yang menyimpan potensi besar padi organik, jagung hibrida, dan kedelai unggulan.
+                  Kawasan agraris bersejarah di Kabupaten Banyumas yang menyimpan potensi besar padi organik, jagung hibrida, dan kedelai unggulan.
                 </p>
               </div>
             </div>
@@ -142,7 +142,7 @@ export const TentangKamiPage = () => {
               
               <div className="bg-[#f0fdf4] border-l-4 border-[#1c4234] p-4 rounded-r-xl">
                 <p className="text-xs sm:text-sm text-[#1c4234] font-medium font-manrope">
-                  "Kekayaan alam vulkanik lereng Gunung Slamet memberikan mineral tanah terlengkap, menjadikan rasa beras lebih manis alami dan kedelai lebih padat sari kedelai."
+                  "Nilai historis Dawuhan sebagai sentra pengaturan air persawahan sejak zaman dahulu menghadirkan tanah subur dan irigasi melimpah, menjadikan mutu gabah lebih bernas dan panen lebih optimal."
                 </p>
               </div>
             </div>
@@ -154,17 +154,29 @@ export const TentangKamiPage = () => {
                 </h4>
                 <div className="space-y-3 font-manrope">
                   <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-100">
-                    <div className="font-bold text-gray-900 text-sm font-poppins">Dusun Krajan (RT 01 - 03 / RW 01)</div>
-                    <div className="text-xs text-gray-500 mt-0.5">Sentra Padi Ciherang & Sekretariat Kelompok Tani</div>
+                    <div className="font-bold text-gray-900 text-sm font-poppins">Dusun Pesarehan / Krajan</div>
+                    <div className="text-xs text-gray-500 mt-0.5">Jl. Pesarehan Adipati Mrapat No 68 • Sentra Padi & Sekretariat</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-100">
-                    <div className="font-bold text-gray-900 text-sm font-poppins">Dusun Kebondalem (RT 01 - 03 / RW 03)</div>
-                    <div className="text-xs text-gray-500 mt-0.5">Sentra Budidaya Kedelai Anjasmoro & Bahan Tahu Tempe</div>
+                    <div className="font-bold text-gray-900 text-sm font-poppins">Dusun Kalibening</div>
+                    <div className="text-xs text-gray-500 mt-0.5">Sentra Budidaya Kedelai Anjasmoro & Kawasan Bersejarah</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-100">
-                    <div className="font-bold text-gray-900 text-sm font-poppins">Dusun Sawah Lor & Kidul (RW 02 & 04)</div>
+                    <div className="font-bold text-gray-900 text-sm font-poppins">Dusun Sawah Lor & Kidul</div>
                     <div className="text-xs text-gray-500 mt-0.5">Hamparan Jagung Pipil Kering & Padi Rendeng</div>
                   </div>
+                </div>
+
+                {/* Link to official portal */}
+                <div className="pt-2 border-t border-gray-100">
+                  <a
+                    href="https://dawuhan-bms.desa.id/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1c4234] hover:underline"
+                  >
+                    <span>Portal Resmi: dawuhan-bms.desa.id ↗</span>
+                  </a>
                 </div>
               </div>
             </div>

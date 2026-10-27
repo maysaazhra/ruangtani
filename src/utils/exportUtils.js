@@ -60,7 +60,7 @@ export const exportToPDF = (data, month, year, summary = {}, filename = 'Laporan
 
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text('Desa Dawuhan, Kec. Padamara, Kab. Purbalingga, Jawa Tengah', 14, 20);
+    doc.text('Desa Dawuhan, Kec. Banyumas, Kab. Banyumas, Jawa Tengah 53192', 14, 20);
     doc.text(`LAPORAN HASIL PANEN & REKAPITULASI - PERIODE: ${monthName.toUpperCase()} ${year}`, 14, 26);
 
     // Summary Box

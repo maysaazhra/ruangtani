@@ -76,7 +76,7 @@ export const Navbar = () => {
           <span className="flex items-center gap-4 text-white/90">
             <span className="flex items-center gap-1 text-xs">
               <MapPin className="w-3.5 h-3.5 text-[#c9a96e]" />
-              Desa Dawuhan, Purbalingga
+              Desa Dawuhan, Kec. Banyumas
             </span>
             <span className="text-white/30">|</span>
             <a 

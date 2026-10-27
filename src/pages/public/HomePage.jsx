@@ -121,7 +121,7 @@ export const HomePage = () => {
                 <div className="p-6 bg-[#0a1f14]/95 text-left border-t border-white/10">
                   <div className="flex items-center justify-between text-xs font-poppins font-semibold text-[#c9a96e] mb-1.5">
                     <span className="flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5" /> Lereng Gunung Slamet
+                      <MapPin className="w-3.5 h-3.5" /> Kec. Banyumas, Kab. Banyumas
                     </span>
                     <span className="bg-[#1c4234] text-[#95d5b2] px-2.5 py-0.5 rounded-full text-[11px]">
                       Terverifikasi Mandiri
@@ -129,11 +129,11 @@ export const HomePage = () => {
                   </div>
                   
                   <h3 className="font-serif font-bold text-white text-xl">
-                    Lumbung Beras & Palawija Organik
+                    Lumbung Beras & Palawija Pilihan
                   </h3>
                   
                   <p className="text-xs text-white/70 mt-1.5 leading-relaxed font-manrope">
-                    Lahan vulkanik pegunungan dengan irigasi alami menghasilkan kualitas gabah kering giling bermutu tinggi, siap didistribusikan langsung tanpa perantara.
+                    Persawahan subur dengan tata kelola irigasi Dawuhan menghasilkan kualitas gabah kering giling bermutu tinggi, siap didistribusikan langsung tanpa perantara.
                   </p>
                 </div>
               </div>
