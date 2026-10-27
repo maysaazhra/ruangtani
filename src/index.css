@@ -4,24 +4,30 @@
 
 @layer base {
   body {
-    @apply bg-[#f8faf8] text-gray-800 antialiased;
+    @apply bg-[#f8faf8] text-gray-900 antialiased font-sans;
+    font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  ::selection {
+    background-color: #dbf0e3;
+    color: #1c4234;
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar in Orbitani Deep Green */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: #f1f5f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #166534;
-  border-radius: 4px;
+  background: #1c4234;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #14532d;
+  background: #0a1f14;
 }
 
 /* Print styling for Laporan Panen */

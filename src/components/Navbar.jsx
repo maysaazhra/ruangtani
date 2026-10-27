@@ -1,19 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { 
-  Sprout, 
   ChevronDown, 
   Lock, 
   Menu, 
   X, 
-  Wheat, 
-  BookOpen, 
   TrendingUp, 
   ShoppingBag, 
   Home, 
   MapPin, 
   ShieldCheck,
-  PhoneCall
+  PhoneCall,
+  ExternalLink,
+  BookOpen,
+  Sprout
 } from 'lucide-react';
 
 export const Navbar = () => {
@@ -21,9 +21,18 @@ export const Navbar = () => {
   const [tentangOpen, setTentangOpen] = useState(false);
   const [programOpen, setProgramOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const tentangRef = useRef(null);
   const programRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -50,233 +59,257 @@ export const Navbar = () => {
   const isProgramActive = currentView === 'program';
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-green-100 shadow-sm transition-all">
-      {/* Top micro banner */}
-      <div className="bg-green-800 text-green-100 px-4 py-1.5 text-xs text-center font-medium hidden sm:flex justify-between items-center max-w-7xl mx-auto">
-        <span className="flex items-center gap-1.5">
-          <MapPin className="w-3.5 h-3.5 text-green-300" />
-          Kawasan Lumbung Pangan Desa Dawuhan, Kec. Padamara, Purbalingga
-        </span>
-        <span className="flex items-center gap-2">
-          <span>Pusat Informasi & Penjualan Gabah Berkualitas</span>
-          <span className="text-green-300">|</span>
-          <span className="text-amber-300 font-semibold flex items-center gap-1">
-            <PhoneCall className="w-3 h-3" /> WA: 0812-3456-7890
+    <header className="sticky top-0 z-50 transition-all duration-300">
+      
+      {/* Top Info Micro-bar */}
+      <div className="bg-[#0a1f14] text-[#95d5b2] border-b border-white/10 px-4 py-1.5 text-xs font-manrope hidden sm:flex justify-between items-center max-w-full">
+        <div className="max-w-7xl mx-auto w-full flex justify-between items-center px-4">
+          <span className="flex items-center gap-2 text-white/80">
+            <span className="inline-flex items-center gap-1.5 text-[#95d5b2] font-semibold">
+              <Sprout className="w-3.5 h-3.5 text-[#95d5b2]" />
+              <span>Sistem Informasi Pertanian Terpadu</span>
+            </span>
+            <span className="text-white/30">•</span>
+            <span className="text-white/70">Kelompok Tani Marsudi Among Tani</span>
           </span>
-        </span>
+
+          <span className="flex items-center gap-4 text-white/90">
+            <span className="flex items-center gap-1 text-xs">
+              <MapPin className="w-3.5 h-3.5 text-[#c9a96e]" />
+              Desa Dawuhan, Purbalingga
+            </span>
+            <span className="text-white/30">|</span>
+            <a 
+              href="https://wa.me/6281234567890" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="text-[#c9a96e] hover:text-white font-semibold flex items-center gap-1 transition-colors"
+            >
+              <PhoneCall className="w-3 h-3" /> Hubungi: 0812-3456-7890
+            </a>
+          </span>
+        </div>
       </div>
 
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          
-          {/* Logo & Kelompok Tani Title */}
-          <div 
-            onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 cursor-pointer group"
-          >
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-green-800 to-green-600 flex items-center justify-center text-white shadow-md shadow-green-800/20 group-hover:scale-105 transition-transform duration-200">
-              <Wheat className="w-7 h-7 text-amber-300" />
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs font-bold uppercase tracking-wider text-green-700 bg-green-50 px-2 py-0.5 rounded-full border border-green-200">
-                  Sistem Informasi Tani
-                </span>
-              </div>
-              <h1 className="text-lg sm:text-xl font-extrabold text-green-950 tracking-tight leading-snug">
-                Marsudi Among Tani
-              </h1>
-              <p className="text-xs text-gray-500 font-medium">
-                Desa Dawuhan • Kec. Padamara
-              </p>
-            </div>
-          </div>
-
-          {/* Desktop Nav Items */}
-          <div className="hidden lg:flex items-center gap-1">
+      {/* Main Floating Glass Navbar */}
+      <div className={`transition-all duration-300 ${
+        scrolled 
+          ? 'bg-[#ffffff]/95 backdrop-blur-md shadow-md py-3 border-b border-gray-200/80' 
+          : 'bg-[#ffffff]/90 backdrop-blur-sm py-4 border-b border-gray-100'
+      }`}>
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
             
-            {/* Home */}
-            <button
+            {/* Brand: RuangTani Marsudi Among Tani */}
+            <div 
               onClick={() => handleNavClick('home')}
-              className={`px-4 py-2.5 rounded-xl font-semibold text-base transition-all flex items-center gap-1.5 ${
-                currentView === 'home'
-                  ? 'bg-green-800 text-white shadow-sm'
-                  : 'text-gray-700 hover:text-green-800 hover:bg-green-50'
-              }`}
+              className="flex items-center gap-3 cursor-pointer group select-none"
             >
-              <Home className="w-4 h-4" />
-              Home
-            </button>
+              <div className="w-10 h-10 rounded-xl bg-[#1c4234] flex items-center justify-center text-white shadow-md shadow-[#1c4234]/20 group-hover:scale-105 transition-transform">
+                <Sprout className="w-6 h-6 text-[#95d5b2]" />
+              </div>
 
-            {/* Tentang Kami (Dropdown) */}
-            <div className="relative" ref={tentangRef}>
+              <div className="text-left">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-poppins font-bold text-xl text-[#1c4234] tracking-tight leading-none">
+                    Ruang<span className="text-[#40916c]">Tani</span>
+                  </span>
+                  <span className="text-[10px] font-extrabold uppercase bg-[#dbf0e3] text-[#1c4234] px-1.5 py-0.5 rounded-md">
+                    Dawuhan
+                  </span>
+                </div>
+                <p className="text-[11px] text-gray-500 font-manrope font-medium leading-none mt-1">
+                  Marsudi Among Tani
+                </p>
+              </div>
+            </div>
+
+            {/* Orbitani Floating Nav Pill (Center) */}
+            <div className="hidden lg:flex items-center gap-1 bg-gray-100/80 p-1.5 rounded-full border border-gray-200 shadow-xs font-manrope">
+              
+              {/* Home */}
               <button
-                onClick={() => {
-                  setTentangOpen(!tentangOpen);
-                  setProgramOpen(false);
-                }}
-                className={`px-4 py-2.5 rounded-xl font-semibold text-base transition-all flex items-center gap-1.5 ${
-                  isTentangActive
-                    ? 'bg-green-800 text-white shadow-sm'
-                    : 'text-gray-700 hover:text-green-800 hover:bg-green-50'
+                onClick={() => handleNavClick('home')}
+                className={`px-4 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-1.5 cursor-pointer ${
+                  currentView === 'home'
+                    ? 'bg-[#1c4234] text-white shadow-sm'
+                    : 'text-gray-700 hover:text-[#1c4234] hover:bg-white/80'
                 }`}
               >
-                <BookOpen className="w-4 h-4" />
-                Tentang Kami
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${tentangOpen ? 'rotate-180' : ''}`} />
+                <Home className="w-3.5 h-3.5" />
+                Beranda
               </button>
 
-              {tentangOpen && (
-                <div className="absolute left-0 mt-2 w-64 rounded-2xl bg-white shadow-xl border border-gray-100 py-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <button
-                    onClick={() => handleNavClick('tentang-desa')}
-                    className="w-full text-left px-4 py-3 hover:bg-green-50 transition-colors flex items-start gap-3 group"
-                  >
-                    <div className="p-2 rounded-lg bg-green-100 text-green-800 group-hover:bg-green-800 group-hover:text-white transition-colors">
-                      <MapPin className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 group-hover:text-green-900 text-sm">
-                        Profil Desa Dawuhan
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        Potensi geografis & kesuburan lahan
-                      </div>
-                    </div>
-                  </button>
+              {/* Tentang Kami (Dropdown) */}
+              <div className="relative" ref={tentangRef}>
+                <button
+                  onClick={() => {
+                    setTentangOpen(!tentangOpen);
+                    setProgramOpen(false);
+                  }}
+                  className={`px-4 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-1 cursor-pointer ${
+                    isTentangActive
+                      ? 'bg-[#1c4234] text-white shadow-sm'
+                      : 'text-gray-700 hover:text-[#1c4234] hover:bg-white/80'
+                  }`}
+                >
+                  <BookOpen className="w-3.5 h-3.5" />
+                  Tentang Kami
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${tentangOpen ? 'rotate-180' : ''}`} />
+                </button>
 
-                  <div className="my-1 border-t border-gray-100" />
+                {tentangOpen && (
+                  <div className="absolute left-0 mt-3 w-64 rounded-2xl bg-white shadow-xl border border-gray-100 py-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                    <button
+                      onClick={() => handleNavClick('tentang-desa')}
+                      className="w-full text-left px-4 py-3 hover:bg-[#f0fdf4] transition-colors flex items-start gap-3 group cursor-pointer"
+                    >
+                      <div className="p-2 rounded-xl bg-[#dbf0e3] text-[#1c4234] group-hover:bg-[#1c4234] group-hover:text-white transition-colors">
+                        <MapPin className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-gray-900 group-hover:text-[#1c4234] text-sm font-poppins">
+                          Profil Desa Dawuhan
+                        </div>
+                        <div className="text-xs text-gray-500 font-manrope">
+                          Potensi geografis & lahan
+                        </div>
+                      </div>
+                    </button>
 
-                  <button
-                    onClick={() => handleNavClick('sejarah-kelompok')}
-                    className="w-full text-left px-4 py-3 hover:bg-green-50 transition-colors flex items-start gap-3 group"
-                  >
-                    <div className="p-2 rounded-lg bg-amber-100 text-amber-800 group-hover:bg-amber-700 group-hover:text-white transition-colors">
-                      <Sprout className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 group-hover:text-amber-900 text-sm">
-                        Sejarah Kelompok Tani
+                    <div className="my-1 border-t border-gray-100" />
+
+                    <button
+                      onClick={() => handleNavClick('sejarah-kelompok')}
+                      className="w-full text-left px-4 py-3 hover:bg-[#f0fdf4] transition-colors flex items-start gap-3 group cursor-pointer"
+                    >
+                      <div className="p-2 rounded-xl bg-[#f5ece0] text-[#c9a96e] group-hover:bg-[#c9a96e] group-hover:text-white transition-colors">
+                        <Sprout className="w-4 h-4" />
                       </div>
-                      <div className="text-xs text-gray-500">
-                        Asal-usul, visi misi & kepengurusan
+                      <div>
+                        <div className="font-semibold text-gray-900 group-hover:text-[#1c4234] text-sm font-poppins">
+                          Sejarah Kelompok Tani
+                        </div>
+                        <div className="text-xs text-gray-500 font-manrope">
+                          Visi misi & kepengurusan
+                        </div>
                       </div>
-                    </div>
-                  </button>
-                </div>
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Program (Dropdown) */}
+              <div className="relative" ref={programRef}>
+                <button
+                  onClick={() => {
+                    setProgramOpen(!programOpen);
+                    setTentangOpen(false);
+                  }}
+                  className={`px-4 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-1 cursor-pointer ${
+                    isProgramActive
+                      ? 'bg-[#1c4234] text-white shadow-sm'
+                      : 'text-gray-700 hover:text-[#1c4234] hover:bg-white/80'
+                  }`}
+                >
+                  <TrendingUp className="w-3.5 h-3.5" />
+                  Program
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${programOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {programOpen && (
+                  <div className="absolute left-0 mt-3 w-72 rounded-2xl bg-white shadow-xl border border-gray-100 py-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                    <button
+                      onClick={() => handleNavClick('program')}
+                      className="w-full text-left px-4 py-3 hover:bg-[#f0fdf4] transition-colors flex items-start gap-3 group cursor-pointer"
+                    >
+                      <div className="p-2 rounded-xl bg-[#dbf0e3] text-[#1c4234] group-hover:bg-[#1c4234] group-hover:text-white transition-colors">
+                        <TrendingUp className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-gray-900 group-hover:text-[#1c4234] text-sm font-poppins">
+                          Hasil Panen & Penjualan
+                        </div>
+                        <div className="text-xs text-gray-500 font-manrope">
+                          Rekapitulasi bulanan & arsip
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Katalog Produk */}
+              <button
+                onClick={() => handleNavClick('katalog')}
+                className={`px-4 py-2 rounded-full font-semibold text-xs sm:text-sm transition-all flex items-center gap-1.5 cursor-pointer ${
+                  currentView === 'katalog'
+                    ? 'bg-[#1c4234] text-white shadow-sm'
+                    : 'text-gray-700 hover:text-[#1c4234] hover:bg-white/80'
+                }`}
+              >
+                <ShoppingBag className="w-3.5 h-3.5" />
+                Katalog Produk
+              </button>
+            </div>
+
+            {/* Orbitani Action CTA: Login Admin / Panel Admin */}
+            <div className="hidden lg:flex items-center gap-3">
+              {isAdmin ? (
+                <button
+                  onClick={() => handleNavClick('admin-dashboard')}
+                  className="inline-flex items-center gap-2 bg-[#1c4234] hover:bg-[#0a1f14] text-white px-5 py-2.5 rounded-full font-poppins font-bold text-xs tracking-wide shadow-md transition-all cursor-pointer border border-[#2d6a4f]"
+                >
+                  <ShieldCheck className="w-4 h-4 text-[#95d5b2]" />
+                  <span>Panel Admin</span>
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleNavClick('login')}
+                  className="inline-flex items-center gap-2 bg-[#1c4234] hover:bg-[#0a1f14] text-white px-5 py-2.5 rounded-full font-poppins font-bold text-xs tracking-wide shadow-sm hover:shadow transition-all cursor-pointer"
+                >
+                  <Lock className="w-3.5 h-3.5 text-[#95d5b2]" />
+                  <span>Login Admin</span>
+                </button>
               )}
             </div>
 
-            {/* Program (Dropdown / Filter: Hasil Panen & Penjualan) */}
-            <div className="relative" ref={programRef}>
+            {/* Mobile Hamburger Button */}
+            <div className="lg:hidden flex items-center">
               <button
-                onClick={() => {
-                  setProgramOpen(!programOpen);
-                  setTentangOpen(false);
-                }}
-                className={`px-4 py-2.5 rounded-xl font-semibold text-base transition-all flex items-center gap-1.5 ${
-                  isProgramActive
-                    ? 'bg-green-800 text-white shadow-sm'
-                    : 'text-gray-700 hover:text-green-800 hover:bg-green-50'
-                }`}
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2.5 rounded-xl text-gray-700 hover:text-[#1c4234] hover:bg-gray-100 transition-colors cursor-pointer"
+                aria-label="Menu"
               >
-                <TrendingUp className="w-4 h-4" />
-                Program
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${programOpen ? 'rotate-180' : ''}`} />
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
-
-              {programOpen && (
-                <div className="absolute left-0 mt-2 w-72 rounded-2xl bg-white shadow-xl border border-gray-100 py-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <button
-                    onClick={() => handleNavClick('program')}
-                    className="w-full text-left px-4 py-3 hover:bg-green-50 transition-colors flex items-start gap-3 group"
-                  >
-                    <div className="p-2 rounded-lg bg-emerald-100 text-emerald-800 group-hover:bg-emerald-800 group-hover:text-white transition-colors">
-                      <TrendingUp className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 group-hover:text-emerald-900 text-sm">
-                        Hasil Panen & Penjualan
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        Rekapitulasi bulanan, filter periode & arsip
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              )}
             </div>
 
-            {/* Katalog Produk */}
-            <button
-              onClick={() => handleNavClick('katalog')}
-              className={`px-4 py-2.5 rounded-xl font-semibold text-base transition-all flex items-center gap-1.5 ${
-                currentView === 'katalog'
-                  ? 'bg-green-800 text-white shadow-sm'
-                  : 'text-gray-700 hover:text-green-800 hover:bg-green-50'
-              }`}
-            >
-              <ShoppingBag className="w-4 h-4" />
-              Katalog Produk
-            </button>
           </div>
-
-          {/* Action Button: Login Admin / Mode Admin */}
-          <div className="hidden lg:flex items-center gap-3">
-            {isAdmin ? (
-              <button
-                onClick={() => handleNavClick('admin-dashboard')}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-green-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md hover:from-emerald-700 hover:to-green-800 transition-all border border-emerald-500"
-              >
-                <ShieldCheck className="w-4 h-4" />
-                Panel Admin
-              </button>
-            ) : (
-              <button
-                onClick={() => handleNavClick('login')}
-                className="inline-flex items-center gap-2 bg-white text-green-900 border-2 border-green-800 px-5 py-2.5 rounded-xl font-bold text-base hover:bg-green-800 hover:text-white transition-all shadow-sm hover:shadow"
-              >
-                <Lock className="w-4 h-4 text-green-700 group-hover:text-white" />
-                Login Admin
-              </button>
-            )}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="lg:hidden flex items-center">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl text-gray-700 hover:text-green-800 hover:bg-green-50 transition-colors"
-              aria-label="Menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-
-        </div>
-      </nav>
+        </nav>
+      </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-green-100 px-4 pt-2 pb-6 space-y-2 shadow-lg animate-in slide-in-from-top-4">
+        <div className="lg:hidden bg-white border-b border-gray-200 px-4 pt-3 pb-6 space-y-2 shadow-xl animate-in slide-in-from-top-4 font-manrope">
           <button
             onClick={() => handleNavClick('home')}
             className={`w-full text-left px-4 py-3 rounded-xl font-semibold flex items-center gap-3 ${
-              currentView === 'home' ? 'bg-green-800 text-white' : 'text-gray-800 hover:bg-green-50'
+              currentView === 'home' ? 'bg-[#1c4234] text-white' : 'text-gray-800 hover:bg-gray-100'
             }`}
           >
             <Home className="w-5 h-5" />
-            Home
+            Beranda
           </button>
 
-          <div className="border-l-2 border-green-700 ml-4 pl-3 py-1 space-y-1">
+          <div className="border-l-2 border-[#1c4234] ml-4 pl-3 py-1 space-y-1">
             <div className="text-xs font-bold uppercase tracking-wider text-gray-500 px-2 py-1">
               Tentang Kami
             </div>
             <button
               onClick={() => handleNavClick('tentang-desa')}
               className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium ${
-                currentView === 'tentang-desa' ? 'bg-green-100 text-green-900 font-bold' : 'text-gray-700 hover:bg-gray-100'
+                currentView === 'tentang-desa' ? 'bg-[#dbf0e3] text-[#1c4234] font-bold' : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
               Profil Desa Dawuhan
@@ -284,21 +317,21 @@ export const Navbar = () => {
             <button
               onClick={() => handleNavClick('sejarah-kelompok')}
               className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium ${
-                currentView === 'sejarah-kelompok' ? 'bg-green-100 text-green-900 font-bold' : 'text-gray-700 hover:bg-gray-100'
+                currentView === 'sejarah-kelompok' ? 'bg-[#dbf0e3] text-[#1c4234] font-bold' : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
               Sejarah Kelompok Tani
             </button>
           </div>
 
-          <div className="border-l-2 border-green-700 ml-4 pl-3 py-1 space-y-1">
+          <div className="border-l-2 border-[#1c4234] ml-4 pl-3 py-1 space-y-1">
             <div className="text-xs font-bold uppercase tracking-wider text-gray-500 px-2 py-1">
               Program
             </div>
             <button
               onClick={() => handleNavClick('program')}
               className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium ${
-                currentView === 'program' ? 'bg-green-100 text-green-900 font-bold' : 'text-gray-700 hover:bg-gray-100'
+                currentView === 'program' ? 'bg-[#dbf0e3] text-[#1c4234] font-bold' : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
               Hasil Panen & Penjualan
@@ -308,7 +341,7 @@ export const Navbar = () => {
           <button
             onClick={() => handleNavClick('katalog')}
             className={`w-full text-left px-4 py-3 rounded-xl font-semibold flex items-center gap-3 ${
-              currentView === 'katalog' ? 'bg-green-800 text-white' : 'text-gray-800 hover:bg-green-50'
+              currentView === 'katalog' ? 'bg-[#1c4234] text-white' : 'text-gray-800 hover:bg-gray-100'
             }`}
           >
             <ShoppingBag className="w-5 h-5" />
@@ -319,17 +352,17 @@ export const Navbar = () => {
             {isAdmin ? (
               <button
                 onClick={() => handleNavClick('admin-dashboard')}
-                className="w-full text-center bg-emerald-700 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow"
+                className="w-full text-center bg-[#1c4234] text-white py-3 rounded-full font-bold flex items-center justify-center gap-2 shadow"
               >
-                <ShieldCheck className="w-5 h-5" />
+                <ShieldCheck className="w-5 h-5 text-[#95d5b2]" />
                 Panel Admin
               </button>
             ) : (
               <button
                 onClick={() => handleNavClick('login')}
-                className="w-full text-center bg-green-800 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow"
+                className="w-full text-center bg-[#1c4234] text-white py-3 rounded-full font-bold flex items-center justify-center gap-2 shadow"
               >
-                <Lock className="w-5 h-5" />
+                <Lock className="w-5 h-5 text-[#95d5b2]" />
                 Login Admin
               </button>
             )}

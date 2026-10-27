@@ -1,53 +1,61 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { Wheat, MapPin, Phone, Mail, ExternalLink, ShieldAlert, Heart } from 'lucide-react';
+import { MapPin, Phone, Mail, ShieldAlert, Sprout } from 'lucide-react';
 
 export const Footer = () => {
   const { navigateTo, desaInfo, isAdmin } = useApp();
 
   return (
-    <footer className="bg-green-950 text-green-100 border-t-4 border-green-700 mt-20 pt-16 pb-12">
+    <footer className="bg-[#0a1f14] text-white/90 border-t border-white/10 mt-20 pt-16 pb-12 font-manrope">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           
-          {/* Col 1: Identity */}
+          {/* Col 1: Identity & RuangTani */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-green-800 text-amber-300 flex items-center justify-center shadow-lg">
-                <Wheat className="w-7 h-7" />
+              <div className="w-9 h-9 rounded-xl bg-[#1c4234] flex items-center justify-center text-white shadow-md border border-white/10">
+                <Sprout className="w-5 h-5 text-[#95d5b2]" />
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-white tracking-tight">Marsudi Among Tani</h3>
-                <p className="text-xs text-green-300 font-medium">Desa Dawuhan • Sejak 2014</p>
+              <div className="text-left">
+                <span className="font-poppins font-bold text-lg text-white tracking-tight">
+                  Ruang<span className="text-[#95d5b2]">Tani</span>
+                </span>
+                <p className="text-[10px] text-white/60 font-manrope font-medium leading-none">
+                  Desa Dawuhan
+                </p>
               </div>
             </div>
-            <p className="text-sm text-green-200/80 leading-relaxed">
-              Mewujudkan kedaulatan pangan desa melalui tata kelola panen transparan, lumbung gabah modern, dan produk pertanian organik bermutu tinggi.
+
+            <p className="text-xs text-white/70 leading-relaxed">
+              Sistem informasi terpadu untuk pencatatan setoran panen, pengelolaan stok lumbung gabah, dan transparansi distribusi hasil pertanian Kelompok Tani Marsudi Among Tani Desa Dawuhan.
             </p>
-            <div className="pt-2 flex items-center gap-2 text-xs text-amber-300 font-medium bg-green-900/60 p-2.5 rounded-xl border border-green-800">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              Sistem Informasi Tani Berbasis Sains Data Masyarakat
+
+            <div className="pt-2">
+              <div className="inline-flex items-center gap-2 text-[11px] text-[#95d5b2] bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#95d5b2] animate-pulse"></span>
+                <span>Komunitas Tani & Lumbung Pangan Desa</span>
+              </div>
             </div>
           </div>
 
           {/* Col 2: Navigation Links */}
           <div className="space-y-3">
-            <h4 className="text-base font-bold text-white uppercase tracking-wider text-sm border-b border-green-800 pb-2">
-              Jelajahi Portal
+            <h4 className="font-poppins font-bold text-xs uppercase tracking-widest text-[#c9a96e]">
+              Menu Layanan
             </h4>
-            <ul className="space-y-2 text-sm text-green-200">
+            <ul className="space-y-2.5 text-xs text-white/80">
               <li>
                 <button
                   onClick={() => navigateTo('home')}
-                  className="hover:text-amber-300 transition-colors flex items-center gap-1.5"
+                  className="hover:text-[#95d5b2] transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
-                  › Beranda Utama
+                  › Beranda RuangTani
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => navigateTo('tentang-desa')}
-                  className="hover:text-amber-300 transition-colors flex items-center gap-1.5"
+                  className="hover:text-[#95d5b2] transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
                   › Profil Desa Dawuhan
                 </button>
@@ -55,7 +63,7 @@ export const Footer = () => {
               <li>
                 <button
                   onClick={() => navigateTo('sejarah-kelompok')}
-                  className="hover:text-amber-300 transition-colors flex items-center gap-1.5"
+                  className="hover:text-[#95d5b2] transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
                   › Sejarah Kelompok Tani
                 </button>
@@ -63,7 +71,7 @@ export const Footer = () => {
               <li>
                 <button
                   onClick={() => navigateTo('program')}
-                  className="hover:text-amber-300 transition-colors flex items-center gap-1.5"
+                  className="hover:text-[#95d5b2] transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
                   › Rekap Panen & Penjualan
                 </button>
@@ -71,7 +79,7 @@ export const Footer = () => {
               <li>
                 <button
                   onClick={() => navigateTo('katalog')}
-                  className="hover:text-amber-300 transition-colors flex items-center gap-1.5"
+                  className="hover:text-[#95d5b2] transition-colors flex items-center gap-1.5 cursor-pointer"
                 >
                   › Katalog Gabah & Beras
                 </button>
@@ -81,68 +89,69 @@ export const Footer = () => {
 
           {/* Col 3: Sekretariat & Kontak */}
           <div className="space-y-3">
-            <h4 className="text-base font-bold text-white uppercase tracking-wider text-sm border-b border-green-800 pb-2">
-              Sekretariat & Kontak
+            <h4 className="font-poppins font-bold text-xs uppercase tracking-widest text-[#c9a96e]">
+              Sekretariat & Hubungi Kami
             </h4>
-            <div className="space-y-2.5 text-sm text-green-200/90">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-amber-300 shrink-0 mt-1" />
+            <div className="space-y-2.5 text-xs text-white/80">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-3.5 h-3.5 text-[#c9a96e] shrink-0 mt-0.5" />
                 <span>{desaInfo.alamatSekretariat}, {desaInfo.kecamatan}, {desaInfo.kabupaten}</span>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-[#95d5b2] shrink-0" />
                 <a
                   href={`https://wa.me/${desaInfo.kontakWA}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-amber-300 transition-colors font-semibold"
+                  className="hover:text-[#95d5b2] transition-colors font-semibold"
                 >
                   {desaInfo.teleponDisplay} (WhatsApp)
                 </a>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-green-400 shrink-0" />
+              <div className="flex items-center gap-2">
+                <Mail className="w-3.5 h-3.5 text-[#95d5b2] shrink-0" />
                 <span>{desaInfo.email}</span>
               </div>
             </div>
           </div>
 
-          {/* Col 4: Akses Khusus Petugas */}
+          {/* Col 4: Akses Khusus & Status */}
           <div className="space-y-3">
-            <h4 className="text-base font-bold text-white uppercase tracking-wider text-sm border-b border-green-800 pb-2">
-              Akses Administrasi
+            <h4 className="font-poppins font-bold text-xs uppercase tracking-widest text-[#c9a96e]">
+              Akses Operator
             </h4>
-            <p className="text-xs text-green-300/80 leading-relaxed">
-              Area input data panen dan manajemen stok hanya dapat diakses oleh petugas pengurus kelompok tani.
+            <p className="text-xs text-white/70 leading-relaxed">
+              Pencatatan setoran panen dan penyesuaian stok gabah dibatasi khusus untuk pengurus kelompok tani.
             </p>
             {isAdmin ? (
               <button
                 onClick={() => navigateTo('admin-dashboard')}
-                className="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition-all shadow-md flex items-center justify-center gap-2"
+                className="w-full bg-[#1c4234] hover:bg-[#235341] text-white font-poppins font-semibold py-2.5 px-4 rounded-full text-xs transition-all border border-[#2d6a4f] shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
-                Masuk Dashboard Admin
+                Dashboard Admin
               </button>
             ) : (
               <button
                 onClick={() => navigateTo('login')}
-                className="w-full bg-green-900/80 hover:bg-green-800 border border-green-700 text-green-100 font-semibold py-2.5 px-4 rounded-xl text-sm transition-all flex items-center justify-center gap-2"
+                className="w-full bg-white/10 hover:bg-white/20 text-white font-poppins font-semibold py-2.5 px-4 rounded-full text-xs transition-all border border-white/20 flex items-center justify-center gap-2 cursor-pointer"
               >
-                <ShieldAlert className="w-4 h-4 text-amber-400" />
-                Login Petugas Admin
+                <ShieldAlert className="w-3.5 h-3.5 text-[#c9a96e]" />
+                <span>Login Operator Admin</span>
               </button>
             )}
-            <div className="text-xs text-green-400/60 pt-1">
-              Demo login: admin / admin123
+            
+            <div className="text-[11px] text-white/50 pt-1 font-mono">
+              Lokasi Server: Indonesia (ID-JKT) · Sistem Online
             </div>
           </div>
 
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-green-900 flex flex-col sm:flex-row items-center justify-between text-xs text-green-400/80 gap-3">
-          <p>© 2026 Kelompok Tani Marsudi Among Tani Desa Dawuhan. Hak Cipta Dilindungi.</p>
-          <p className="flex items-center gap-1">
-            Dibangun dengan <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400" /> untuk Kemakmuran Petani Desa Dawuhan
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-white/60 gap-3">
+          <p>© 2026 RuangTani · Kelompok Tani Marsudi Among Tani Desa Dawuhan</p>
+          <p className="text-white/50 text-[11px]">
+            Sistem Informasi Sains Data untuk Masyarakat
           </p>
         </div>
       </div>

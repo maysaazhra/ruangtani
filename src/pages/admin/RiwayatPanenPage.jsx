@@ -4,16 +4,13 @@ import { formatNumber, formatDateIndo } from '../../utils/formatters';
 import { 
   History, 
   Search, 
-  Filter, 
   Edit3, 
   Trash2, 
   PlusCircle, 
   Wheat, 
-  Calendar, 
   X, 
-  Check, 
   AlertTriangle,
-  FileSpreadsheet
+  Sparkles
 } from 'lucide-react';
 
 export const RiwayatPanenPage = () => {
@@ -83,56 +80,56 @@ export const RiwayatPanenPage = () => {
   };
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto pb-12">
+    <div className="space-y-6 max-w-7xl mx-auto pb-12 font-manrope">
       
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-green-700 bg-green-100 px-3 py-1 rounded-full mb-1">
+          <div className="inline-flex items-center gap-1.5 text-xs font-poppins font-bold uppercase tracking-wider text-[#1c4234] bg-[#dbf0e3] px-3.5 py-1 rounded-full mb-1">
             <History className="w-3.5 h-3.5" />
             Manajemen Transaksi
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-green-950">
+          <h1 className="text-2xl sm:text-3xl font-poppins font-bold text-[#1c4234]">
             Riwayat Pencatatan Panen
           </h1>
-          <p className="text-sm text-gray-600">
+          <p className="text-xs sm:text-sm text-gray-600 font-manrope">
             Daftar lengkap transaksi setoran gabah petani Desa Dawuhan dengan kontrol edit dan hapus.
           </p>
         </div>
 
         <button
           onClick={() => navigateTo('admin-input-panen')}
-          className="bg-green-800 hover:bg-green-700 text-white font-extrabold px-5 py-3 rounded-2xl text-sm transition-all shadow-md flex items-center gap-2 cursor-pointer shrink-0"
+          className="bg-[#1c4234] hover:bg-[#0a1f14] text-white font-poppins font-bold px-5 py-3 rounded-full text-xs sm:text-sm transition-all shadow-md flex items-center gap-2 cursor-pointer shrink-0"
         >
-          <PlusCircle className="w-4 h-4" />
+          <PlusCircle className="w-4 h-4 text-[#95d5b2]" />
           <span>Input Panen Baru</span>
         </button>
       </div>
 
       {/* Filter and Summary Bar */}
-      <div className="bg-white rounded-3xl p-6 border border-green-100 shadow-sm space-y-4">
+      <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-xs space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           
           {/* Search Bar */}
           <div className="relative flex-1 max-w-md">
-            <Search className="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Cari nama petani, komoditas, atau catatan..."
-              className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm font-medium focus:bg-white focus:ring-2 focus:ring-green-700 focus:outline-hidden"
+              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-xs sm:text-sm font-medium focus:bg-white focus:ring-2 focus:ring-[#1c4234] focus:outline-hidden font-manrope"
             />
           </div>
 
           {/* Filters */}
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-gray-500">Komoditas:</span>
+              <span className="text-xs font-poppins font-bold text-gray-500">Komoditas:</span>
               <select
                 value={filterKomoditas}
                 onChange={(e) => setFilterKomoditas(e.target.value)}
-                className="py-2.5 px-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-green-700 focus:outline-hidden cursor-pointer"
+                className="py-2 px-3 bg-gray-50 border border-gray-200 rounded-full text-xs font-poppins font-semibold text-gray-800 focus:ring-2 focus:ring-[#1c4234] focus:outline-hidden cursor-pointer"
               >
                 <option value="Semua">Semua Komoditas</option>
                 <option value="Padi">Padi</option>
@@ -142,11 +139,11 @@ export const RiwayatPanenPage = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-gray-500">Kualitas:</span>
+              <span className="text-xs font-poppins font-bold text-gray-500">Kualitas:</span>
               <select
                 value={filterKualitas}
                 onChange={(e) => setFilterKualitas(e.target.value)}
-                className="py-2.5 px-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-green-700 focus:outline-hidden cursor-pointer"
+                className="py-2 px-3 bg-gray-50 border border-gray-200 rounded-full text-xs font-poppins font-semibold text-gray-800 focus:ring-2 focus:ring-[#1c4234] focus:outline-hidden cursor-pointer"
               >
                 <option value="Semua">Semua Kualitas</option>
                 <option value="A">Grade A (Super)</option>
@@ -159,88 +156,88 @@ export const RiwayatPanenPage = () => {
         </div>
 
         {/* Micro statistics */}
-        <div className="pt-3 border-t border-gray-100 flex flex-wrap items-center justify-between text-xs text-gray-600 gap-2">
+        <div className="pt-3 border-t border-gray-100 flex flex-wrap items-center justify-between text-xs text-gray-600 gap-2 font-manrope">
           <span>Menampilkan <strong>{filteredData.length}</strong> dari <strong>{harvests.length}</strong> total data panen</span>
-          <span className="font-bold text-green-900 bg-green-50 px-3 py-1 rounded-full border border-green-200">
+          <span className="font-poppins font-bold text-[#1c4234] bg-[#dbf0e3] px-3 py-1 rounded-full border border-[#dbf0e3]">
             Total Bobot: {formatNumber(totalKgFiltered)} Kg
           </span>
         </div>
       </div>
 
       {/* Main Table */}
-      <div className="bg-white rounded-3xl border border-green-100 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-2xl border border-gray-200/80 shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           {filteredData.length === 0 ? (
             <div className="text-center py-16 text-gray-500 space-y-3">
               <History className="w-12 h-12 mx-auto text-gray-300" />
-              <p className="font-bold text-base text-gray-700">Tidak ada data panen yang cocok dengan kriteria pencarian.</p>
+              <p className="font-poppins font-bold text-sm text-gray-700">Tidak ada data panen yang cocok dengan kriteria pencarian.</p>
               <button
                 onClick={() => { setSearchTerm(''); setFilterKomoditas('Semua'); setFilterKualitas('Semua'); }}
-                className="text-xs font-bold text-green-800 underline hover:text-green-950 cursor-pointer"
+                className="text-xs font-bold text-[#1c4234] underline hover:text-[#0a1f14] cursor-pointer"
               >
                 Reset Semua Filter
               </button>
             </div>
           ) : (
             <table className="w-full text-left text-sm text-gray-700">
-              <thead className="bg-green-50/80 text-xs font-bold uppercase tracking-wider text-green-950 border-b border-green-100">
+              <thead className="bg-[#f0fdf4] text-[11px] font-poppins font-bold uppercase tracking-wider text-[#1c4234] border-b border-[#dbf0e3]">
                 <tr>
-                  <th className="py-4 px-4">ID Transaksi</th>
-                  <th className="py-4 px-4">Tanggal Setor</th>
-                  <th className="py-4 px-4">Nama Petani</th>
-                  <th className="py-4 px-4">Komoditas</th>
-                  <th className="py-4 px-4 text-right">Jumlah Panen</th>
-                  <th className="py-4 px-4 text-center">Kualitas</th>
-                  <th className="py-4 px-4">Catatan / Lokasi</th>
-                  <th className="py-4 px-4 text-center">Aksi</th>
+                  <th className="py-3.5 px-4">ID Transaksi</th>
+                  <th className="py-3.5 px-4">Tanggal Setor</th>
+                  <th className="py-3.5 px-4">Nama Petani</th>
+                  <th className="py-3.5 px-4">Komoditas</th>
+                  <th className="py-3.5 px-4 text-right">Jumlah Panen</th>
+                  <th className="py-3.5 px-4 text-center">Kualitas</th>
+                  <th className="py-3.5 px-4">Catatan / Lokasi</th>
+                  <th className="py-3.5 px-4 text-center">Aksi</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-gray-100 font-manrope">
                 {filteredData.map((row) => (
-                  <tr key={row.id} className="hover:bg-green-50/40 transition-colors">
-                    <td className="py-4 px-4 font-mono text-xs text-gray-500">
+                  <tr key={row.id} className="hover:bg-[#f0fdf4]/40 transition-colors">
+                    <td className="py-3.5 px-4 font-mono text-xs text-gray-500">
                       {row.id}
                     </td>
-                    <td className="py-4 px-4 font-medium text-gray-900 whitespace-nowrap">
+                    <td className="py-3.5 px-4 font-medium text-gray-900 whitespace-nowrap">
                       {formatDateIndo(row.tanggal)}
                     </td>
-                    <td className="py-4 px-4 font-bold text-gray-900">
+                    <td className="py-3.5 px-4 font-poppins font-bold text-gray-900">
                       {row.petaniNama}
                     </td>
-                    <td className="py-4 px-4">
-                      <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                    <td className="py-3.5 px-4">
+                      <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold ${
                         row.komoditas === 'Padi'
-                          ? 'bg-emerald-100 text-emerald-800'
+                          ? 'bg-[#dbf0e3] text-[#1c4234]'
                           : row.komoditas === 'Jagung'
-                          ? 'bg-amber-100 text-amber-800'
+                          ? 'bg-[#f5ece0] text-[#9d7c43]'
                           : 'bg-yellow-100 text-yellow-900'
                       }`}>
                         {row.komoditas}
                       </span>
                     </td>
-                    <td className="py-4 px-4 text-right font-black text-green-900 text-base">
-                      {formatNumber(row.jumlahKg)} <span className="text-xs font-semibold text-gray-500">kg</span>
+                    <td className="py-3.5 px-4 text-right font-poppins font-bold text-[#1c4234] text-base">
+                      {formatNumber(row.jumlahKg)} <span className="text-xs font-normal text-gray-500">kg</span>
                     </td>
-                    <td className="py-4 px-4 text-center">
-                      <span className={`px-2 py-0.5 rounded text-xs font-extrabold ${
+                    <td className="py-3.5 px-4 text-center">
+                      <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
                         row.kualitas === 'A'
-                          ? 'bg-green-700 text-white'
+                          ? 'bg-[#1c4234] text-white'
                           : row.kualitas === 'B'
                           ? 'bg-blue-600 text-white'
-                          : 'bg-amber-500 text-white'
+                          : 'bg-[#c9a96e] text-white'
                       }`}>
                         Grade {row.kualitas}
                       </span>
                     </td>
-                    <td className="py-4 px-4 text-xs text-gray-600 max-w-xs truncate">
+                    <td className="py-3.5 px-4 text-xs text-gray-600 max-w-xs truncate">
                       {row.catatan || '-'}
                     </td>
-                    <td className="py-4 px-4 text-center whitespace-nowrap">
+                    <td className="py-3.5 px-4 text-center whitespace-nowrap">
                       <div className="flex items-center justify-center gap-2">
                         {/* Edit Button */}
                         <button
                           onClick={() => handleOpenEdit(row)}
-                          className="p-2 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors cursor-pointer"
+                          className="p-1.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors cursor-pointer"
                           title="Edit Catatan Panen"
                         >
                           <Edit3 className="w-4 h-4" />
@@ -249,7 +246,7 @@ export const RiwayatPanenPage = () => {
                         {/* Delete Button */}
                         <button
                           onClick={() => setDeletingId(row.id)}
-                          className="p-2 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 transition-colors cursor-pointer"
+                          className="p-1.5 rounded-lg bg-rose-50 text-rose-700 hover:bg-rose-100 transition-colors cursor-pointer"
                           title="Hapus Catatan Panen"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -270,17 +267,17 @@ export const RiwayatPanenPage = () => {
           <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-gray-100">
             <div className="flex items-center justify-between border-b border-gray-100 pb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center">
-                  <Edit3 className="w-5 h-5" />
+                <div className="w-9 h-9 rounded-xl bg-[#dbf0e3] text-[#1c4234] flex items-center justify-center">
+                  <Edit3 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900">Edit Data Panen</h3>
+                  <h3 className="text-base font-poppins font-bold text-gray-900">Edit Data Panen</h3>
                   <p className="text-xs text-gray-500 font-mono">{editingItem.id}</p>
                 </div>
               </div>
               <button
                 onClick={() => setEditingItem(null)}
-                className="p-2 text-gray-400 hover:text-gray-600 rounded-lg cursor-pointer"
+                className="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -288,13 +285,13 @@ export const RiwayatPanenPage = () => {
 
             <form onSubmit={handleSaveEdit} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                <label className="block text-xs font-poppins font-bold text-gray-700 uppercase mb-1">
                   Nama Petani Penyetor
                 </label>
                 <select
                   value={editForm.petaniNama}
                   onChange={(e) => setEditForm({ ...editForm, petaniNama: e.target.value })}
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-hidden"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-[#1c4234] focus:outline-hidden"
                 >
                   {farmers.map(f => (
                     <option key={f.id} value={f.nama}>{f.nama}</option>
@@ -304,13 +301,13 @@ export const RiwayatPanenPage = () => {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                  <label className="block text-xs font-poppins font-bold text-gray-700 uppercase mb-1">
                     Komoditas
                   </label>
                   <select
                     value={editForm.komoditas}
                     onChange={(e) => setEditForm({ ...editForm, komoditas: e.target.value })}
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-hidden"
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-[#1c4234] focus:outline-hidden"
                   >
                     <option value="Padi">Padi</option>
                     <option value="Jagung">Jagung</option>
@@ -319,7 +316,7 @@ export const RiwayatPanenPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                  <label className="block text-xs font-poppins font-bold text-gray-700 uppercase mb-1">
                     Jumlah (Kg)
                   </label>
                   <input
@@ -328,14 +325,14 @@ export const RiwayatPanenPage = () => {
                     min="1"
                     value={editForm.jumlahKg}
                     onChange={(e) => setEditForm({ ...editForm, jumlahKg: e.target.value })}
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-bold focus:ring-2 focus:ring-blue-600 focus:outline-hidden"
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-bold focus:ring-2 focus:ring-[#1c4234] focus:outline-hidden"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                  <label className="block text-xs font-poppins font-bold text-gray-700 uppercase mb-1">
                     Tanggal
                   </label>
                   <input
@@ -343,18 +340,18 @@ export const RiwayatPanenPage = () => {
                     required
                     value={editForm.tanggal}
                     onChange={(e) => setEditForm({ ...editForm, tanggal: e.target.value })}
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-hidden"
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-[#1c4234] focus:outline-hidden"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                  <label className="block text-xs font-poppins font-bold text-gray-700 uppercase mb-1">
                     Kualitas
                   </label>
                   <select
                     value={editForm.kualitas}
                     onChange={(e) => setEditForm({ ...editForm, kualitas: e.target.value })}
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-hidden"
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-[#1c4234] focus:outline-hidden"
                   >
                     <option value="A">Grade A (Super)</option>
                     <option value="B">Grade B (Standar)</option>
@@ -364,7 +361,7 @@ export const RiwayatPanenPage = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                <label className="block text-xs font-poppins font-bold text-gray-700 uppercase mb-1">
                   Catatan Petak / Kondisi
                 </label>
                 <input
@@ -372,7 +369,7 @@ export const RiwayatPanenPage = () => {
                   value={editForm.catatan}
                   onChange={(e) => setEditForm({ ...editForm, catatan: e.target.value })}
                   placeholder="Catatan kondisi panen..."
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-600 focus:outline-hidden"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-[#1c4234] focus:outline-hidden"
                 />
               </div>
 
@@ -380,13 +377,13 @@ export const RiwayatPanenPage = () => {
                 <button
                   type="button"
                   onClick={() => setEditingItem(null)}
-                  className="px-5 py-2.5 rounded-xl border border-gray-300 text-sm font-bold text-gray-700 hover:bg-gray-100 cursor-pointer"
+                  className="px-5 py-2.5 rounded-full border border-gray-300 text-xs font-poppins font-semibold text-gray-700 hover:bg-gray-100 cursor-pointer"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-bold shadow-md cursor-pointer"
+                  className="px-6 py-2.5 rounded-full bg-[#1c4234] hover:bg-[#0a1f14] text-white text-xs font-poppins font-bold shadow-md cursor-pointer"
                 >
                   Simpan Perubahan
                 </button>
@@ -400,29 +397,29 @@ export const RiwayatPanenPage = () => {
       {deletingId && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-xs animate-in fade-in">
           <div className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-5 shadow-2xl border border-rose-100 text-center">
-            <div className="w-14 h-14 rounded-2xl bg-rose-100 text-rose-600 mx-auto flex items-center justify-center">
-              <AlertTriangle className="w-7 h-7" />
+            <div className="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 mx-auto flex items-center justify-center">
+              <AlertTriangle className="w-6 h-6" />
             </div>
             
             <div className="space-y-1">
-              <h3 className="text-lg font-black text-gray-900">Hapus Catatan Panen?</h3>
-              <p className="text-xs text-gray-600">
+              <h3 className="text-base font-poppins font-bold text-gray-900">Hapus Catatan Panen?</h3>
+              <p className="text-xs text-gray-600 font-manrope">
                 Apakah Anda yakin ingin menghapus data panen <span className="font-mono font-bold text-rose-700">{deletingId}</span>? Tindakan ini akan mengupdate stok gabah di lumbung secara otomatis.
               </p>
             </div>
 
-            <div className="pt-3 flex items-center justify-center gap-3">
+            <div className="pt-3 flex items-center justify-center gap-3 font-poppins">
               <button
                 type="button"
                 onClick={() => setDeletingId(null)}
-                className="flex-1 py-3 px-4 rounded-xl border border-gray-300 text-sm font-bold text-gray-700 hover:bg-gray-100 cursor-pointer"
+                className="flex-1 py-2.5 px-4 rounded-full border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-100 cursor-pointer"
               >
                 Batal
               </button>
               <button
                 type="button"
                 onClick={handleConfirmDelete}
-                className="flex-1 py-3 px-4 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold shadow-md cursor-pointer"
+                className="flex-1 py-2.5 px-4 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-md cursor-pointer"
               >
                 Ya, Hapus Data
               </button>
