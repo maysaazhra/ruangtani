@@ -1,0 +1,120 @@
+{
+  "model": {
+    "algoritma": "LogisticRegression",
+    "fitur": [
+      "luas",
+      "susut",
+      "rendemen"
+    ],
+    "koefisien": {
+      "luas": 0.802,
+      "susut": -1.755,
+      "rendemen": -0.226
+    },
+    "intercept": -0.811,
+    "precision_cv": 0.79,
+    "recall_cv": 0.67,
+    "n_samples": 85,
+    "catatan": "Fitur susut dalam Kg absolut; koefisien negatif adalah artefak skala produksi, bukan indikator kualitas."
+  },
+  "petani": [
+    {
+      "nama": "YATIMAN",
+      "rata_skor_risiko": 0.609,
+      "jumlah_musim": 5,
+      "musim_berisiko": 3,
+      "gkp_rata": 242.0
+    },
+    {
+      "nama": "SLAMET",
+      "rata_skor_risiko": 0.55,
+      "jumlah_musim": 11,
+      "musim_berisiko": 5,
+      "gkp_rata": 301.0
+    },
+    {
+      "nama": "KARSONO",
+      "rata_skor_risiko": 0.526,
+      "jumlah_musim": 2,
+      "musim_berisiko": 2,
+      "gkp_rata": 288.0
+    },
+    {
+      "nama": "AMINAH",
+      "rata_skor_risiko": 0.526,
+      "jumlah_musim": 5,
+      "musim_berisiko": 2,
+      "gkp_rata": 343.0
+    },
+    {
+      "nama": "AGUNG TRIYATNO",
+      "rata_skor_risiko": 0.469,
+      "jumlah_musim": 5,
+      "musim_berisiko": 2,
+      "gkp_rata": 369.0
+    },
+    {
+      "nama": "RUSDIARJO SIWAN",
+      "rata_skor_risiko": 0.451,
+      "jumlah_musim": 8,
+      "musim_berisiko": 3,
+      "gkp_rata": 482.0
+    },
+    {
+      "nama": "PURWADI PAIMAN",
+      "rata_skor_risiko": 0.377,
+      "jumlah_musim": 17,
+      "musim_berisiko": 7,
+      "gkp_rata": 610.0
+    },
+    {
+      "nama": "TASLIM MIHARJO",
+      "rata_skor_risiko": 0.376,
+      "jumlah_musim": 5,
+      "musim_berisiko": 1,
+      "gkp_rata": 546.0
+    },
+    {
+      "nama": "SANADI",
+      "rata_skor_risiko": 0.33,
+      "jumlah_musim": 5,
+      "musim_berisiko": 2,
+      "gkp_rata": 620.0
+    },
+    {
+      "nama": "TISUN SAYEKTI",
+      "rata_skor_risiko": 0.3,
+      "jumlah_musim": 5,
+      "musim_berisiko": 2,
+      "gkp_rata": 555.0
+    },
+    {
+      "nama": "TIMAN MUHAJIR",
+      "rata_skor_risiko": 0.283,
+      "jumlah_musim": 5,
+      "musim_berisiko": 2,
+      "gkp_rata": 697.0
+    },
+    {
+      "nama": "SUWARMAN",
+      "rata_skor_risiko": 0.184,
+      "jumlah_musim": 5,
+      "musim_berisiko": 2,
+      "gkp_rata": 1607.0
+    },
+    {
+      "nama": "SUKIRNO",
+      "rata_skor_risiko": 0.099,
+      "jumlah_musim": 2,
+      "musim_berisiko": 0,
+      "gkp_rata": 854.0
+    },
+    {
+      "nama": "ETTI PUJI RAHAYU",
+      "rata_skor_risiko": 0.061,
+      "jumlah_musim": 5,
+      "musim_berisiko": 0,
+      "gkp_rata": 1356.0
+    }
+  ]
+}
