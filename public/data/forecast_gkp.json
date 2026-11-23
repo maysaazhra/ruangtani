@@ -1,1 +1,23 @@
-[{"periode":"2024-MT2","prediksi_gkp":10294.5396464256},{"periode":"2025-MT1","prediksi_gkp":7326.6935895987}]
+{
+  "riwayat": [
+    {"periode": "2020-MT1", "gkp": 13842.0},
+    {"periode": "2020-MT2", "gkp": 13486.0},
+    {"periode": "2021-MT1", "gkp": 14052.0},
+    {"periode": "2021-MT2", "gkp": 13448.58},
+    {"periode": "2022-MT1", "gkp": 16612.0},
+    {"periode": "2022-MT2", "gkp": 16071.0},
+    {"periode": "2023-MT1", "gkp": 11690.0},
+    {"periode": "2023-MT2", "gkp": 13540.0},
+    {"periode": "2024-MT1", "gkp": 15188.0}
+  ],
+  "forecast": [
+    {"periode": "2024-MT2", "prediksi_gkp": 14423.0},
+    {"periode": "2025-MT1", "prediksi_gkp": 14621.0}
+  ],
+  "evaluasi": {
+    "model": "Holt-Winters (trend=add, seasonal=add, period=2)",
+    "baseline_lag2_mae": 3498,
+    "holt_winters_mae": 1278,
+    "catatan": "Evaluasi hold-out 1 titik; keterbatasan sampel diakui."
+  }
+}
