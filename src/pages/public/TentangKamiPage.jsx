@@ -7,7 +7,7 @@ export const TentangKamiPage = () => {
   
   const [selectedBlok, setSelectedBlok] = useState(null);
 
-  // DATA BLOK
+  // DATA BLOK (Hanya 4 Blok, Serang & Margono dihapus)
   const dataBlok = [
     {
       id: 'krikil',
@@ -44,33 +44,16 @@ export const TentangKamiPage = () => {
       ketua: 'Pak Yatiman',
       deskripsi: 'Terletak di perbukitan. Sumber air langsung dari mata air gunung melalui selang sejauh 70m.',
       petakOrganik: ['BL-02', 'BL-04']
-    },
-    {
-      id: 'serang',
-      nama: 'Blok Serang',
-      gambar: '/sawah.jpeg', // Ganti jika ada fotonya
-      luas: '3.74 Ha',
-      ketua: 'Pak Sukasno',
-      deskripsi: 'Lahan pertanian di area Serang.',
-      petakOrganik: [] 
-    },
-    {
-      id: 'margono',
-      nama: 'Blok Margono',
-      gambar: '/sawah.jpeg', // Ganti jika ada fotonya
-      luas: '1.42 Ha',
-      ketua: 'Pak Sutarjo',
-      deskripsi: 'Lahan pertanian di area Margono.',
-      petakOrganik: []
     }
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 font-manrope">
+    // Menggunakan py-12 agar tidak terlalu menjorok ke bawah
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 font-manrope">
       
-      {/* Page Title */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <h1 className="text-3xl sm:text-5xl font-serif font-bold text-[#1c4234]">
+      {/* Page Title - Jarak antar elemen dirapatkan */}
+      <div className="text-center max-w-3xl mx-auto mb-12">
+        <h1 className="text-3xl sm:text-5xl font-serif font-bold text-[#1c4234] mb-4">
           Tentang Desa Dawuhan & Poktan Marsudi Among Tani
         </h1>
         <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-manrope">
@@ -79,12 +62,12 @@ export const TentangKamiPage = () => {
       </div>
 
       {/* Narrative Content (Teks Profil) */}
-      <div className="bg-white p-8 sm:p-10 rounded-3xl border border-gray-200/80 shadow-xs space-y-6">
-        <h3 className="text-2xl font-serif font-bold text-[#1c4234]">
+      <div className="bg-white p-8 sm:p-10 rounded-3xl border border-gray-200/80 shadow-sm mb-10">
+        <h3 className="text-2xl font-serif font-bold text-[#1c4234] mb-4">
           Asal-Usul Nama Dawuhan & Makna Kearifan Lokal
         </h3>
         
-        <div className="text-sm text-gray-700 space-y-4 leading-relaxed font-manrope whitespace-pre-line">
+        <div className="text-sm text-gray-700 leading-relaxed font-manrope whitespace-pre-line mb-6">
           {desaInfo.profilDesa}
         </div>
 
@@ -99,9 +82,9 @@ export const TentangKamiPage = () => {
         </div>
       </div>
 
-      {/* BAGIAN PETA BLOK (Galery Berjajar) */}
-      <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
-        <div className="text-center mb-10">
+      {/* BAGIAN PETA BLOK (Langsung menyatu, tidak pakai kotak putih besar) */}
+      <div className="mb-12">
+        <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-[#1c4234] text-xs font-bold mb-3">
             <MapPin className="w-4 h-4" />
             PEMETAAN SPASIAL LAHAN
@@ -112,32 +95,33 @@ export const TentangKamiPage = () => {
           </p>
         </div>
 
-        {/* Grid Peta */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Grid Peta (Langsung 4 Kolom sejajar tanpa card pembungkus besar) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {dataBlok.map((blok) => (
             <div 
               key={blok.id}
               onClick={() => setSelectedBlok(blok)}
-              className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:border-[#1c4234] transition-all cursor-pointer group"
+              className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg hover:border-[#1c4234] transition-all cursor-pointer group flex flex-col"
             >
-              <div className="h-48 overflow-hidden bg-gray-50 relative">
+              <div className="h-40 overflow-hidden bg-gray-50 relative">
                 <img 
                   src={blok.gambar} 
                   alt={blok.nama} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-[10px] font-bold text-[#1c4234] shadow-sm flex items-center gap-1">
+                <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-[10px] font-bold text-[#1c4234] shadow-sm flex items-center gap-1">
                   <Leaf className="w-3 h-3 text-green-600" />
-                  {blok.petakOrganik.length} Petak Organik
+                  {blok.petakOrganik.length} Petak
                 </div>
               </div>
-              <div className="p-5 text-center">
-                <h3 className="font-bold text-[#1c4234] text-lg mb-1">{blok.nama}</h3>
-                <div className="flex justify-center items-center gap-3 text-xs text-gray-500 mb-3">
-                  <span className="flex items-center gap-1"><Maximize className="w-3 h-3" /> {blok.luas}</span>
-                  <span className="flex items-center gap-1"><User className="w-3 h-3" /> {blok.ketua}</span>
+              <div className="p-4 text-center flex-grow flex flex-col justify-between">
+                <div>
+                  <h3 className="font-bold text-[#1c4234] text-base mb-1">{blok.nama}</h3>
+                  <div className="flex justify-center items-center gap-2 text-xs text-gray-500 mb-2">
+                    <span className="flex items-center gap-1"><Maximize className="w-3 h-3" /> {blok.luas}</span>
+                  </div>
                 </div>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-[#1c4234] group-hover:text-green-600">
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-[#1c4234] group-hover:text-green-600 mt-2">
                   Lihat Detail &rarr;
                 </span>
               </div>
