@@ -1,14 +1,7 @@
 // src/data/seedData.js
 // Data real (non‑dummy) for the Kelompok Tani Marsudi Among Tani
 
-// ---- Import product images (place these files in src/assets/products/) ----
-import berasImg from '../assets/products/Beras Organik.jpeg';
-import jagungImg from '../assets/products/Jagung.jpeg';
-import kedelaiImg from '../assets/products/Kedelai.jpeg';
-import kacangHijauImg from '../assets/products/Kacang Hijau.jpeg';
-import logoImg from '../assets/logo/Logo Desa.jpeg';
-
-export const LOGO = logoImg;
+export const LOGO = '/logo-desa.jpeg'; // Sesuaikan dengan nama file logo di folder public
 
 export const DESA_INFO = {
   namaKelompok: 'Marsudi Among Tani',
@@ -47,7 +40,7 @@ export const PRODUCTS = [
   {
     id: 'padi',
     nama: 'Beras Organik Ciherang',
-    gambar: berasImg,
+    gambar: '/beras-organik.jpeg',
     harga: 25000,
     stok: 1200,
     pengelolaan: 'Organik',
@@ -56,29 +49,29 @@ export const PRODUCTS = [
   {
     id: 'jagung',
     nama: 'Jagung Pipil Kering Hibrida',
-    gambar: jagungImg,
+    gambar: '/jagung.jpeg',
     harga: 19000,
     stok: 850,
     pengelolaan: 'Konversi',
-    deskripsi: 'Jagung pipil kering hibrida, diproduksi pada masa transisi ke organik (MT 03).',
+    deskripsi: 'Jagung pipil kering hibrida, diproduksi pada masa transisi ke organik (MT 03).',
   },
   {
     id: 'kedelai',
     nama: 'Kedelai Kuning Anjasmoro',
-    gambar: kedelaiImg,
+    gambar: '/kedelai.jpeg',
     harga: 21000,
     stok: 600,
     pengelolaan: 'Organik',
-    deskripsi: 'Kedelai varietas Anjasmoro, diproduksi pada MT 03 dengan praktik organik bersertifikat.',
+    deskripsi: 'Kedelai varietas Anjasmoro, diproduksi pada MT 03 dengan praktik organik bersertifikat.',
   },
   {
     id: 'kacang_hijau',
     nama: 'Kacang Hijau Vima Unggul',
-    gambar: kacangHijauImg,
+    gambar: '/kacang-hijau.jpeg',
     harga: 18000,
     stok: 400,
     pengelolaan: 'Organik',
-    deskripsi: 'Kacang hijau varietas Vima unggul, dibudidayakan secara organik pada MT 03.',
+    deskripsi: 'Kacang hijau varietas Vima unggul, dibudidayakan secara organik pada MT 03.',
   },
 ];
 
