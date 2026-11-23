@@ -18,7 +18,7 @@ export const AdminAnalyticsPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const resForecast = await fetch('/data/forecast_gkp.json');
+                const resForecast = await fetch('/data/forecast_gkp.json?v=2');
                 const dataForecast = await resForecast.json();
                 const resRisiko = await fetch('/data/risiko_petani.json');
                 const dataRisiko = await resRisiko.json();
