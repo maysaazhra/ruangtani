@@ -12,7 +12,7 @@ import {
   Clock,
   Sparkles,
   ShieldCheck,
-  FileCheck
+  Map
 } from 'lucide-react';
 
 export const TentangKamiPage = () => {
@@ -22,6 +22,19 @@ export const TentangKamiPage = () => {
   const [activeTab, setActiveTab] = useState(() => {
     return currentView === 'sejarah-kelompok' ? 'sejarah' : 'desa';
   });
+
+  // State untuk Modal Peta
+  const [modalPeta, setModalPeta] = useState(null);
+
+  // Data blok (Sesuaikan nama file gambar dengan yang ada di folder public/peta/)
+  const daftarBlok = [
+    { id: 1, nama: 'Blok Blimbing', luas: '1.74 Ha', ketua: 'Pak Yatiman', gambar: '/peta/Blimbing.jpg' },
+    { id: 2, nama: 'Blok Serang', luas: '3.74 Ha', ketua: 'Pak Sukasno', gambar: '/peta/Serang.jpg' },
+    { id: 3, nama: 'Blok Wungu', luas: '2.87 Ha', ketua: 'Pak Sumarjo', gambar: '/peta/Wungu.jpg' },
+    { id: 4, nama: 'Blok Krikil', luas: '7.20 Ha', ketua: 'Pak Suwarman', gambar: '/peta/Krikil.jpg' },
+    { id: 5, nama: 'Blok Jembangan', luas: '3.03 Ha', ketua: 'Pak Taslim Miharjo', gambar: '/peta/Jembangan.jpg' },
+    { id: 6, nama: 'Blok Margono', luas: '1.42 Ha', ketua: 'Pak Sutarjo', gambar: '/peta/Margono.jpg' },
+  ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 font-manrope">
@@ -156,46 +169,35 @@ export const TentangKamiPage = () => {
 
             {/* Sidebar Wilayah Binaan & Blok Sawah */}
             <div className="lg:col-span-4 bg-[#f0fdf4] p-8 rounded-3xl border border-[#dbf0e3] space-y-5">
-              <h4 className="font-serif font-bold text-lg text-[#1c4234] border-b border-[#dbf0e3] pb-3">
+              <h4 className="font-serif font-bold text-lg text-[#1c4234] border-b border-[#dbf0e3] pb-3 flex items-center gap-2">
+                <Map className="w-5 h-5" />
                 6 Blok Hamparan Pertanian
               </h4>
               
-              <ul className="space-y-3.5 text-xs font-manrope">
-                <li className="bg-white p-3 rounded-xl border border-[#dbf0e3] shadow-2xs">
-                  <span className="font-poppins font-bold text-[#1c4234] block">1. Blok Blimbing (1.74 Ha)</span>
-                  <span className="text-gray-600">Ketua Blok: Pak Yatiman</span>
-                </li>
-                <li className="bg-white p-3 rounded-xl border border-[#dbf0e3] shadow-2xs">
-                  <span className="font-poppins font-bold text-[#1c4234] block">2. Blok Serang (3.74 Ha)</span>
-                  <span className="text-gray-600">Ketua Blok: Pak Sukasno</span>
-                </li>
-                <li className="bg-white p-3 rounded-xl border border-[#dbf0e3] shadow-2xs">
-                  <span className="font-poppins font-bold text-[#1c4234] block">3. Blok Wungu (2.87 Ha)</span>
-                  <span className="text-gray-600">Ketua Blok: Pak Sumarjo</span>
-                </li>
-                <li className="bg-white p-3 rounded-xl border border-[#dbf0e3] shadow-2xs">
-                  <span className="font-poppins font-bold text-[#1c4234] block">4. Blok Krikil (7.20 Ha)</span>
-                  <span className="text-gray-600">Ketua Blok: Pak Suwarman</span>
-                </li>
-                <li className="bg-white p-3 rounded-xl border border-[#dbf0e3] shadow-2xs">
-                  <span className="font-poppins font-bold text-[#1c4234] block">5. Blok Jembangan (3.03 Ha)</span>
-                  <span className="text-gray-600">Ketua Blok: Pak Taslim Miharjo</span>
-                </li>
-                <li className="bg-white p-3 rounded-xl border border-[#dbf0e3] shadow-2xs">
-                  <span className="font-poppins font-bold text-[#1c4234] block">6. Blok Margono (1.42 Ha)</span>
-                  <span className="text-gray-600">Ketua Blok: Pak Sutarjo</span>
-                </li>
-              </ul>
+              <div className="space-y-3.5 text-xs font-manrope">
+                {daftarBlok.map((blok) => (
+                  <div 
+                    key={blok.id} 
+                    onClick={() => setModalPeta(blok)}
+                    className="bg-white p-3 rounded-xl border border-[#dbf0e3] shadow-2xs hover:border-[#1c4234] hover:shadow-md cursor-pointer transition-all group flex justify-between items-center"
+                  >
+                    <div>
+                      <span className="font-poppins font-bold text-[#1c4234] block">{blok.id}. {blok.nama} ({blok.luas})</span>
+                      <span className="text-gray-600">Ketua Blok: {blok.ketua}</span>
+                    </div>
+                    <span className="text-[#40916c] font-bold text-lg opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
         </div>
       )}
 
-      {/* TAB 2: SEJARAH & LEGALITAS KELOMPOK TANI */}
+      {/* TAB 2: SEJARAH & LEGALITAS KELOMPOK TANI (Tidak diubah) */}
       {activeTab === 'sejarah' && (
         <div className="space-y-12 animate-in fade-in duration-300">
-          
           {/* Sejarah & Visi Misi */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-8 bg-white p-8 sm:p-10 rounded-3xl border border-gray-200/80 shadow-xs space-y-6">
@@ -219,7 +221,7 @@ export const TentangKamiPage = () => {
                   Prestasi Kelompok Tani
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-manrope">
-                  {desaInfo.prestasi.map((p, idx) => (
+                  {desaInfo.prestasi?.map((p, idx) => (
                     <div key={idx} className="bg-gray-50 p-3 rounded-xl border border-gray-200">
                       <span className="font-poppins font-bold text-[#1c4234] block">Tahun {p.tahun}</span>
                       <span className="text-gray-700">{p.predikat}</span>
@@ -286,7 +288,7 @@ export const TentangKamiPage = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {desaInfo.strukturOrganisasi.map((s, idx) => (
+              {desaInfo.strukturOrganisasi?.map((s, idx) => (
                 <div key={idx} className="p-4 rounded-2xl bg-gray-50 border border-gray-200 hover:border-[#1c4234] transition-all">
                   <span className="text-[11px] font-poppins font-bold text-[#2d6a4f] uppercase tracking-wider block">
                     {s.jabatan}
@@ -301,7 +303,32 @@ export const TentangKamiPage = () => {
               ))}
             </div>
           </div>
+        </div>
+      )}
 
+      {/* --- MODAL POP-UP PETA BLOK --- */}
+      {modalPeta && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm" onClick={() => setModalPeta(null)}>
+          <div className="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl" onClick={e => e.stopPropagation()}>
+            {/* Header Modal */}
+            <div className="flex justify-between items-center p-5 border-b border-gray-200 bg-[#f0fdf4]">
+              <div>
+                <h3 className="font-serif font-bold text-2xl text-[#1c4234]">{modalPeta.nama}</h3>
+                <p className="text-sm text-gray-600 font-manrope">Luas: {modalPeta.luas} | Ketua: {modalPeta.ketua}</p>
+              </div>
+              <button onClick={() => setModalPeta(null)} className="text-gray-400 hover:text-red-500 text-3xl font-bold leading-none">&times;</button>
+            </div>
+            
+            {/* Gambar Peta */}
+            <div className="p-4 overflow-auto flex-1 bg-gray-50 flex justify-center items-center">
+               <img src={modalPeta.gambar} alt={`Peta ${modalPeta.nama}`} className="max-w-full h-auto rounded-lg shadow-md border border-gray-300" />
+            </div>
+
+            {/* Keterangan Kode */}
+            <div className="p-5 bg-[#1c4234] text-sm text-white font-manrope border-t border-green-900">
+              <strong className="text-[#95d5b2]">Keterangan Petak:</strong> Kode pada peta (contoh: <b>JB-18</b>) menunjukkan lahan sawah organik. <b>JB</b> berarti Blok Jembangan, dan <strong>18</strong> adalah nomor petak.
+            </div>
+          </div>
         </div>
       )}
 
