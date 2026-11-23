@@ -4,7 +4,7 @@ import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
     BarChart, Bar
 } from 'recharts';
-import { TrendingUp, Award, FileDown, AlertTriangle } from 'lucide-react';
+import { TrendingUp, FileDown, AlertTriangle } from 'lucide-react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
@@ -18,7 +18,7 @@ export const AdminAnalyticsPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const resForecast = await fetch('/data/forecast_gkp.json?v=2');
+                const resForecast = await fetch('/data/forecast_gkp.json');
                 const dataForecast = await resForecast.json();
                 const resRisiko = await fetch('/data/risiko_petani.json');
                 const dataRisiko = await resRisiko.json();
@@ -33,15 +33,31 @@ export const AdminAnalyticsPage = () => {
         fetchData();
     }, []);
 
+    // Gabungkan data dengan memastikan nilainya adalah angka (Number)
     const grafikTren = [
-        ...(forecastData.riwayat || []).map(d => ({ periode: d.periode, aktual: d.gkp, prediksi: null })),
-        ...(forecastData.forecast || []).map(d => ({ periode: d.periode, aktual: null, prediksi: d.prediksi_gkp }))
+        ...(forecastData.riwayat || []).map(d => ({ 
+            periode: d.periode, 
+            aktual: Number(d.gkp), 
+            prediksi: null 
+        })),
+        ...(forecastData.forecast || []).map(d => ({ 
+            periode: d.periode, 
+            aktual: null, 
+            prediksi: Number(d.prediksi_gkp) 
+        }))
     ];
 
     const grafikRisiko = (risikoData.petani || []).slice(0, 5).map(p => ({
         nama: p.nama,
-        skor: p.rata_skor_risiko
+        skor: Number(p.rata_skor_risiko)
     }));
+
+    const hitungAkurasi = () => {
+        const base = forecastData.evaluasi?.baseline_lag2_mae;
+        const hw = forecastData.evaluasi?.holt_winters_mae;
+        if (!base || !hw) return 0;
+        return Math.round(((base - hw) / base) * 100);
+    };
 
     const handleExportPDF = () => {
         const doc = new jsPDF();
@@ -95,7 +111,7 @@ export const AdminAnalyticsPage = () => {
                     <div>
                         <h3 className="font-bold text-green-900 text-sm">Performa Model Peramalan</h3>
                         <p className="text-sm text-green-800 mt-1">
-                            Model <strong>{forecastData.evaluasi?.model || 'Holt-Winters'}</strong> memprediksi panen. Akurasi lebih baik <strong>{Math.round(((forecastData.evaluasi?.baseline_lag2_mae - forecastData.evaluasi?.holt_winters_mae) / forecastData.evaluasi?.baseline_lag2_mae) * 100)}%</strong> dari metode konvensional.
+                            Model <strong>{forecastData.evaluasi?.model || 'Holt-Winters'}</strong> memprediksi panen. Akurasi lebih baik <strong>{hitungAkurasi()}%</strong> dari metode konvensional.
                         </p>
                     </div>
                 </div>
@@ -120,7 +136,7 @@ export const AdminAnalyticsPage = () => {
                         <LineChart data={grafikTren}>
                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
                             <XAxis dataKey="periode" tick={{ fill: '#6B7280', fontSize: 12 }} />
-                            <YAxis tick={{ fill: '#6B7280', fontSize: 12 }} />
+                            <YAxis tick={{ fill: '#6B7280', fontSize: 12 }} domain={['auto', 'auto']} />
                             <RechartsTooltip contentStyle={{ borderRadius: '12px' }} />
                             <Legend />
                             <Line type="monotone" dataKey="aktual" name="Panen Aktual (kg)" stroke="#1c4234" strokeWidth={3} connectNulls />
