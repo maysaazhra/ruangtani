@@ -11,21 +11,17 @@ import autoTable from 'jspdf-autotable';
 export const AdminAnalyticsPage = () => {
     const { desaInfo, harvests } = useApp();
     
-    // State untuk menampung data dari JSON
     const [forecastData, setForecastData] = useState({ riwayat: [], forecast: [], evaluasi: {} });
     const [risikoData, setRisikoData] = useState({ petani: [] });
     const [loading, setLoading] = useState(true);
 
-    // Fetch data JSON saat komponen dimuat
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const resForecast = await fetch('/data/forecast_gkp.json');
                 const dataForecast = await resForecast.json();
-                
                 const resRisiko = await fetch('/data/risiko_petani.json');
                 const dataRisiko = await resRisiko.json();
-                
                 setForecastData(dataForecast);
                 setRisikoData(dataRisiko);
             } catch (error) {
@@ -37,19 +33,16 @@ export const AdminAnalyticsPage = () => {
         fetchData();
     }, []);
 
-    // Gabungkan data riwayat dan forecast untuk grafik
     const grafikTren = [
-        ...forecastData.riwayat.map(d => ({ periode: d.periode, aktual: d.gkp, prediksi: null })),
-        ...forecastData.forecast.map(d => ({ periode: d.periode, aktual: null, prediksi: d.prediksi_gkp }))
+        ...(forecastData.riwayat || []).map(d => ({ periode: d.periode, aktual: d.gkp, prediksi: null })),
+        ...(forecastData.forecast || []).map(d => ({ periode: d.periode, aktual: null, prediksi: d.prediksi_gkp }))
     ];
 
-    // Ambil 5 petani dengan risiko tertinggi untuk grafik batang
-    const grafikRisiko = risikoData.petani.slice(0, 5).map(p => ({
+    const grafikRisiko = (risikoData.petani || []).slice(0, 5).map(p => ({
         nama: p.nama,
         skor: p.rata_skor_risiko
     }));
 
-    // FUNGSI EXPORT PDF
     const handleExportPDF = () => {
         const doc = new jsPDF();
         doc.setFontSize(16);
@@ -60,15 +53,12 @@ export const AdminAnalyticsPage = () => {
         doc.text(desaInfo?.alamatSekretariat || "Desa Dawuhan, Banyumas", 105, 27, { align: "center", maxWidth: 180 });
         doc.setLineWidth(1);
         doc.line(15, 32, 195, 32);
-
         doc.setFontSize(14);
         doc.setFont("helvetica", "bold");
         doc.text("LAPORAN REKAPITULASI DATA PANEN", 105, 42, { align: "center" });
-
         const tableData = (harvests || []).map((item, index) => [
             index + 1, item.tanggal, item.petaniNama, item.komoditas, item.pengelolaan, `${item.jumlahKg} kg`
         ]);
-
         autoTable(doc, {
             startY: 50,
             head: [['No', 'Tanggal', 'Nama Petani', 'Komoditas', 'Pengelolaan', 'Jumlah']],
@@ -77,7 +67,6 @@ export const AdminAnalyticsPage = () => {
             headStyles: { fillColor: [28, 66, 52], textColor: [255, 255, 255] },
             styles: { fontSize: 9, cellPadding: 3 },
         });
-
         const finalY = doc.lastAutoTable.finalY || 50;
         doc.setFontSize(10);
         doc.text(`Banyumas, ${new Date().toLocaleDateString('id-ID')}`, 140, finalY + 20);
@@ -86,13 +75,10 @@ export const AdminAnalyticsPage = () => {
         doc.save(`Laporan_Rekap_Panen_Admin.pdf`);
     };
 
-    if (loading) {
-        return <div className="p-6 text-center text-gray-500">Memuat data analitik...</div>;
-    }
+    if (loading) return <div className="p-6 text-center text-gray-500">Memuat data sains data...</div>;
 
     return (
         <div className="space-y-6 font-manrope pb-12">
-            {/* Header Halaman */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <div>
                     <h1 className="text-2xl font-poppins font-bold text-[#1c4234]">Analitik & Laporan</h1>
@@ -103,14 +89,13 @@ export const AdminAnalyticsPage = () => {
                 </button>
             </div>
 
-            {/* Insight Otomatis (Mengambil dari Evaluasi Model) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-[#f0fdf4] border border-green-200 p-5 rounded-2xl flex items-start gap-4">
                     <div className="p-3 bg-green-100 text-green-700 rounded-xl shrink-0"><TrendingUp className="w-6 h-6" /></div>
                     <div>
                         <h3 className="font-bold text-green-900 text-sm">Performa Model Peramalan</h3>
                         <p className="text-sm text-green-800 mt-1">
-                            Model <strong>{forecastData.evaluasi?.model || 'Holt-Winters'}</strong> digunakan untuk memprediksi panen. Akurasi model lebih baik <strong>{Math.round(((forecastData.evaluasi?.baseline_lag2_mae - forecastData.evaluasi?.holt_winters_mae) / forecastData.evaluasi?.baseline_lag2_mae) * 100)}%</strong> dibanding metode konvensional.
+                            Model <strong>{forecastData.evaluasi?.model || 'Holt-Winters'}</strong> memprediksi panen. Akurasi lebih baik <strong>{Math.round(((forecastData.evaluasi?.baseline_lag2_mae - forecastData.evaluasi?.holt_winters_mae) / forecastData.evaluasi?.baseline_lag2_mae) * 100)}%</strong> dari metode konvensional.
                         </p>
                     </div>
                 </div>
@@ -119,13 +104,12 @@ export const AdminAnalyticsPage = () => {
                     <div>
                         <h3 className="font-bold text-yellow-900 text-sm">Pantauan Risiko Petani</h3>
                         <p className="text-sm text-yellow-800 mt-1">
-                            Sistem mendeteksi <strong>{risikoData.petani?.filter(p => p.rata_skor_risiko > 0.5).length || 0} petani</strong> dengan risiko penurunan produksi tinggi. Disarankan untuk melakukan pendampingan lapangan.
+                            Sistem mendeteksi <strong>{(risikoData.petani || []).filter(p => p.rata_skor_risiko > 0.5).length} petani</strong> berisiko tinggi. Disarankan pendampingan lapangan.
                         </p>
                     </div>
                 </div>
             </div>
 
-            {/* Grafik Tren & Prediksi */}
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <div className="mb-6">
                     <h2 className="font-poppins font-bold text-lg text-[#1c4234]">Tren Historis & Prediksi Panen (Sains Data)</h2>
@@ -146,7 +130,6 @@ export const AdminAnalyticsPage = () => {
                 </div>
             </div>
 
-            {/* Grafik Risiko Petani */}
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <div className="mb-6">
                     <h2 className="font-poppins font-bold text-lg text-[#1c4234]">Top 5 Petani Berisiko (Machine Learning)</h2>
